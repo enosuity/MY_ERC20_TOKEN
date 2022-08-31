@@ -12,3 +12,4 @@ npx hardhat node
 npx hardhat run scripts/deploy.js
 ```
 # MY_ERC20_TOKEN
+# MY_ERC20_TOKEN
