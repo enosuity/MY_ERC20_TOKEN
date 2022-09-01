@@ -47,7 +47,7 @@ contract Staking  {
 
     modifier updateReward(address _account) {
         require(_account != address(0), "Invalid address");
-        rewards[_account] = earning(_account) - rewardsPaid[_account];
+        rewards[_account] = earning(_account);
 
         _;
     }
@@ -81,10 +81,12 @@ contract Staking  {
         uint counter = no_of_durations(_account);
         
         require(reward > 0 , "earning = 0");
+
         require(reward < rewardsToken.balanceOf(address(this)), "reward amount > balance");
         require(block.timestamp >= info[_account].finishAt, "No maturity time");
 
-        info[_account].finishAt = info[_account].startingAt + (duration * 1 seconds) * (counter + 1);
+        info[_account].startingAt += (duration * 1 seconds) * counter;
+        info[_account].finishAt = info[_account].startingAt + (duration * 1 seconds);
 
         rewardsPaid[_account] += reward;
 
