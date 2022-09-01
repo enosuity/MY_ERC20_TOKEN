@@ -47,7 +47,7 @@ describe("Token Contract", function(){
 
     await expect(
       hardhatToken.connect(addr1).transfer(addr2.address, 50)
-    ).to.be.revertedWith("Not Enough Tokens")
+    ).to.be.revertedWith("Not Enough Tokens");
 
     expect(await hardhatToken.balanceOf(addr1.address)).to.equal(initialBalance);
   });

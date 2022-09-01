@@ -102,7 +102,8 @@ contract Staking  {
     }
 
     function stake(uint _amount) external validDuration {
-        require(_amount > 0, "Amount = 0 ");        
+        require(_amount > 0, "Amount = 0 "); 
+        require(rewardRate > 0, "APY rate = 0");       
 
         info[msg.sender] = AccountHolder({
             startingAt: block.timestamp,
